@@ -153,9 +153,9 @@ export default function Home() {
               >
                 <option value="" disabled>↓ Category</option>
                 <option value="football">⚽ Football</option>
-                <option value="relationship">❤️ Relationship</option>
-                <option value="money">💰 Money</option>
-                <option value="career">💼 Career</option>
+                <option value="relationship">🔥 Street (Breakfast)</option>
+                <option value="money">💼 Corporate</option>
+                <option value="career">⛪ Church</option>
                 <option value="health">🏥 Health</option>
                 <option value="education">📚 Education</option>
                 <option value="travel">✈️ Travel</option>
