@@ -126,12 +126,14 @@ export default function Home() {
               value={contributionInput}
               onChange={(e) => setContributionInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleContribute()}
-              placeholder="Contribute a vibe..."
+              placeholder="Share your vibe/advice..."
+              title="Describe a feeling, relationship, or experience in the selected category"
               className="px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all w-48 md:w-64"
             />
             <button
               onClick={handleContribute}
               disabled={!contributionInput.trim() || !selectedCategory}
+              title={!selectedCategory ? "Select a category first" : "Submit your vibe"}
               className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all whitespace-nowrap"
             >
               Submit
