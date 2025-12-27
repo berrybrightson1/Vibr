@@ -145,48 +145,47 @@ export default function Home() {
 
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-4 sm:py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-          <h1 className="text-3xl font-black tracking-tight">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-3 flex items-center justify-between gap-3 sm:gap-4">
+          {/* Logo */}
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight flex-shrink-0">
             Vib<span className="text-primary">r</span>
             <span className="text-primary">.</span>
           </h1>
 
-          {/* Contribution Section */}
-          <div className="flex items-center gap-2">
-            <div className="relative flex-1 max-w-full sm:max-w-md">
-              <input
-                type="text"
-                value={contributionInput}
-                onChange={(e) => setContributionInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleContribute()}
-                placeholder="Share your vibr"
-                title="Describe a feeling, relationship, or experience"
-                className="w-full px-4 py-2 pr-28 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all"
-              />
-              <select
-                value={selectedCategory || ""}
-                onChange={(e) => setSelectedCategory(e.target.value as Category)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 border-2 border-primary/40 dark:border-primary/50 text-foreground rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer text-xs font-semibold hover:bg-primary/20 dark:hover:bg-primary/30 transition-all shadow-sm backdrop-blur-sm"
-                title="Select category for this vibe"
-              >
-                <option value="" disabled>Select</option>
-                <option value="football">Football</option>
-                <option value="relationship">Street</option>
-                <option value="money">Corporate</option>
-                <option value="career">Church</option>
-                <option value="health">Health</option>
-                <option value="education">Education</option>
-                <option value="travel">Travel</option>
-              </select>
-            </div>
-            <button
-              onClick={handleContribute}
-              disabled={!contributionInput.trim()}
-              title={!selectedCategory ? "Select a category first" : "Submit your vibe"}
-              className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all whitespace-nowrap"
+          {/* Contribution Input - grows to fill space */}
+          <div className="relative flex-1 max-w-md">
+            <input
+              type="text"
+              value={contributionInput}
+              onChange={(e) => setContributionInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleContribute()}
+              placeholder="Share your vibr"
+              title="Describe a feeling, relationship, or experience"
+              className="w-full px-3 sm:px-4 py-2 pr-20 sm:pr-24 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all text-sm truncate"
+              style={{
+                maskImage: "linear-gradient(to right, black 70%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to right, black 70%, transparent 100%)"
+              }}
+            />
+            <select
+              value={selectedCategory || ""}
+              onChange={(e) => setSelectedCategory(e.target.value as Category)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-2 sm:px-3 py-1 sm:py-1.5 bg-primary/10 dark:bg-primary/20 border-2 border-primary/40 dark:border-primary/50 text-foreground rounded-lg focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer text-xs font-semibold hover:bg-primary/20 dark:hover:bg-primary/30 transition-all shadow-sm backdrop-blur-sm"
+              title="Select category for this vibe"
             >
-              Submit
-            </button>
+              <option value="" disabled>Select</option>
+              <option value="football">Football</option>
+              <option value="relationship">Street</option>
+              <option value="money">Corporate</option>
+              <option value="career">Church</option>
+              <option value="health">Health</option>
+              <option value="education">Education</option>
+              <option value="travel">Travel</option>
+            </select>
+          </div>
+
+          {/* Theme Toggle */}
+          <div className="flex-shrink-0">
             <ThemeToggle isDark={isDark} onChange={setIsDark} />
           </div>
         </div>
