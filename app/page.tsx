@@ -143,22 +143,23 @@ export default function Home() {
                 onKeyDown={(e) => e.key === "Enter" && handleContribute()}
                 placeholder="Share your vibe/advice..."
                 title="Describe a feeling, relationship, or experience"
-                className="w-full px-4 py-2 pr-10 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all"
+                className="w-full px-4 py-2 pr-28 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all"
               />
               <select
                 value={selectedCategory || ""}
                 onChange={(e) => setSelectedCategory(e.target.value as Category)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-none text-muted-foreground hover:text-foreground focus:outline-none cursor-pointer text-sm"
+                className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-background/90 backdrop-blur border border-border text-foreground rounded-md focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer text-xs font-medium hover:bg-accent transition-colors"
                 title="Select category for this vibe"
+                style={{ minWidth: '110px' }}
               >
-                <option value="" disabled>↓ Category</option>
-                <option value="football">⚽ Football</option>
-                <option value="relationship">🔥 Street (Breakfast)</option>
-                <option value="money">💼 Corporate</option>
-                <option value="career">⛪ Church</option>
-                <option value="health">🏥 Health</option>
-                <option value="education">📚 Education</option>
-                <option value="travel">✈️ Travel</option>
+                <option value="" disabled>Select Category</option>
+                <option value="football">Football</option>
+                <option value="relationship">Street</option>
+                <option value="money">Corporate</option>
+                <option value="career">Church</option>
+                <option value="health">Health</option>
+                <option value="education">Education</option>
+                <option value="travel">Travel</option>
               </select>
             </div>
             <button
