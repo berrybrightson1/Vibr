@@ -72,28 +72,31 @@ export function InputSection({
                 <button
                   onClick={() => onPerspectiveChange("me")}
                   disabled={isLoading}
-                  className={`px-2.5 py-1.5 text-xs font-medium rounded transition-all duration-200 ${
-                    perspective === "me"
+                  className={`px-2.5 py-1.5 text-xs font-medium rounded transition-all duration-200 ${perspective === "me"
                       ? "bg-muted text-foreground dark:bg-muted dark:text-foreground"
                       : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground"
-                  } disabled:opacity-50`}
+                    } disabled:opacity-50`}
                 >
                   Self
                 </button>
                 <button
                   onClick={() => onPerspectiveChange("you")}
                   disabled={isLoading}
-                  className={`px-2.5 py-1.5 text-xs font-medium rounded transition-all duration-200 ${
-                    perspective === "you"
+                  className={`px-2.5 py-1.5 text-xs font-medium rounded transition-all duration-200 ${perspective === "you"
                       ? "bg-muted text-foreground dark:bg-muted dark:text-foreground"
                       : "text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground"
-                  } disabled:opacity-50`}
+                    } disabled:opacity-50`}
                 >
                   Other
                 </button>
               </div>
 
-              <ModelSelector selectedModel={selectedModel} onModelSelect={onModelSelect} onModelClear={onModelClear} />
+              <div className="flex items-center gap-2">
+                <ModelSelector selectedModel={selectedModel} onModelSelect={onModelSelect} onModelClear={onModelClear} />
+                {!selectedModel && (
+                  <span className="text-xs text-muted-foreground" title="Best model will be auto-selected for you">Auto 🤖</span>
+                )}
+              </div>
             </div>
 
             {/* Right controls - Category selector and Submit button */}
