@@ -25,7 +25,7 @@ export function CategorySlider({ selectedCategory, onSelectCategory }: CategoryS
           behavior: "smooth",
         })
       }
-    }, 4000)
+    }, 2000)
 
     return () => clearInterval(interval)
   }, [currentIndex, categories.length])
@@ -48,9 +48,9 @@ export function CategorySlider({ selectedCategory, onSelectCategory }: CategoryS
             key={category}
             onClick={() => handleCategoryClick(index)}
             variant={selectedCategory === category ? "default" : "outline"}
-            className={`whitespace-nowrap flex-shrink-0 py-3 px-8 font-semibold text-sm rounded-xl transition-all duration-300 ${selectedCategory === category
-                ? "bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg"
-                : "bg-card hover:bg-primary/10 hover:text-primary text-foreground dark:text-muted-foreground border-border"
+            className={`whitespace-nowrap flex-shrink-0 py-3 px-8 font-semibold text-sm rounded-xl transition-all duration-150 ${selectedCategory === category
+              ? "bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg scale-105"
+              : "bg-card hover:bg-primary/10 hover:text-primary text-foreground dark:text-muted-foreground border-border hover:scale-102"
               }`}
           >
             {vibeDB[category].label}
@@ -64,14 +64,7 @@ export function CategorySlider({ selectedCategory, onSelectCategory }: CategoryS
             key={index}
             onClick={() => {
               const targetIndex = index * itemsPerSlide
-              setCurrentIndex(targetIndex)
-              onSelectCategory(categories[targetIndex])
-              if (scrollContainerRef.current) {
-                scrollContainerRef.current.scrollTo({
-                  left: targetIndex * 280,
-                  behavior: "smooth",
-                })
-              }
+              handleCategoryClick(targetIndex) // Use the unified click handler
             }}
             className={`rounded-full transition-all duration-500 ${Math.floor(currentIndex / itemsPerSlide) === index
               ? "bg-primary w-8 h-2.5"
