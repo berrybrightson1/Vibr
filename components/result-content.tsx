@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { vibeDB, type Category } from "@/lib/vibe-db"
 import { showToast } from "./toast"
-import html2canvas from "html2canvas"
 
 export function ResultContent() {
   const router = useRouter()
@@ -108,35 +107,23 @@ export function ResultContent() {
         return
       }
 
-      const html2canvas = (await import("html2canvas")).default
+      const { toJpeg } = await import("html-to-image")
 
-      const clone = cardRef.current.cloneNode(true) as HTMLElement
-      clone.style.position = "absolute"
-      clone.style.left = "-9999px"
-      clone.style.top = "0"
-      document.body.appendChild(clone)
-
-      const canvas = await html2canvas(clone, {
+      const dataUrl = await toJpeg(cardRef.current, {
+        quality: 0.95,
+        pixelRatio: 2,
         backgroundColor: "#000000",
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        imageTimeout: 15000,
-        logging: false,
       })
 
-      document.body.removeChild(clone)
-
-      const jpegData = canvas.toDataURL("image/jpeg", 0.95)
       const link = document.createElement("a")
       link.download = `vibr-${category}-${Date.now()}.jpg`
-      link.href = jpegData
+      link.href = dataUrl
       link.click()
 
       showToast("Downloaded!")
     } catch (error) {
-      console.error("Download error:", error)
-      showToast("Download failed - please try again")
+      console.error("[v0] Download error:", error)
+      showToast("Download error - please try again")
     } finally {
       setIsDownloading(false)
     }
