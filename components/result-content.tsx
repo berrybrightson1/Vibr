@@ -103,15 +103,14 @@ export function ResultContent() {
   const handleDownload = async () => {
     setIsDownloading(true)
     try {
-      const cardElement = document.querySelector(".vibe-card")
-      if (!cardElement) {
+      if (!cardRef.current) {
         showToast("Card element not found")
         return
       }
 
       const html2canvas = (await import("html2canvas")).default
 
-      const clone = cardElement.cloneNode(true) as HTMLElement
+      const clone = cardRef.current.cloneNode(true) as HTMLElement
       clone.style.position = "absolute"
       clone.style.left = "-9999px"
       clone.style.top = "0"
