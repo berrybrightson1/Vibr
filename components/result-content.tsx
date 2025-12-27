@@ -199,8 +199,8 @@ export function ResultContent() {
                     <Button
                       onClick={() => router.push("/")}
                       className={`font-bold text-sm px-4 py-1.5 rounded-lg backdrop-blur ${isDark
-                          ? 'bg-white/20 hover:bg-white/30 text-white'
-                          : 'bg-zinc-900/20 hover:bg-zinc-900/30 text-zinc-900'
+                        ? 'bg-white/20 hover:bg-white/30 text-white'
+                        : 'bg-zinc-900/20 hover:bg-zinc-900/30 text-zinc-900'
                         }`}
                     >
                       Vibr App
@@ -210,65 +210,48 @@ export function ResultContent() {
               </div>
             </div>
           </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col gap-3 mt-10 md:mt-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400 w-full">
-            {/* Navigation and Share Row */}
-            <div className="flex gap-3">
-              <button
-                onClick={handlePrevious}
-                disabled={currentIndex === 0}
-                aria-label="Previous vibe"
-                data-testid="prev-btn"
-                className="px-4 py-4 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 disabled:opacity-30 disabled:cursor-not-allowed text-zinc-400 hover:text-white rounded-xl flex items-center justify-center transition-all active:scale-95 font-semibold"
+          disabled={isGenerating}
+          data-testid="next-btn"
+          className="flex-1 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 disabled:opacity-50 text-zinc-400 hover:text-white py-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 font-semibold"
               >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
+          <ChevronRight className="w-5 h-5" />
+          <span className="text-sm">{isGenerating ? "Generating..." : "Next Vibe"}</span>
+        </button>
 
-              <button
-                onClick={() => handleNext()}
-                disabled={isGenerating}
-                data-testid="next-btn"
-                className="flex-1 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 disabled:opacity-50 text-zinc-400 hover:text-white py-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 font-semibold"
-              >
-                <ChevronRight className="w-5 h-5" />
-                <span className="text-sm">{isGenerating ? "Generating..." : "Next Vibe"}</span>
-              </button>
+        <button
+          onClick={handleShare}
+          aria-label="Share vibe"
+          data-testid="share-btn"
+          className="px-4 py-4 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 hover:text-green-400 rounded-xl flex items-center justify-center transition-all active:scale-95 font-semibold"
+        >
+          <Share2 className="w-5 h-5" />
+        </button>
+      </div>
 
-              <button
-                onClick={handleShare}
-                aria-label="Share vibe"
-                data-testid="share-btn"
-                className="px-4 py-4 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 hover:text-green-400 rounded-xl flex items-center justify-center transition-all active:scale-95 font-semibold"
-              >
-                <Share2 className="w-5 h-5" />
-              </button>
-            </div>
+      {/* Download Button */}
+      <button
+        onClick={handleDownload}
+        disabled={isDownloading}
+        data-testid="download-btn"
+        className="w-full bg-green-500 hover:bg-green-400 text-black font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-green-900/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-base"
+      >
+        <Download className="w-5 h-5" />
+        <span>{isDownloading ? "Downloading..." : "Download Now"}</span>
+      </button>
+    </div >
 
-            {/* Download Button */}
-            <button
-              onClick={handleDownload}
-              disabled={isDownloading}
-              data-testid="download-btn"
-              className="w-full bg-green-500 hover:bg-green-400 text-black font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-green-900/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-base"
-            >
-              <Download className="w-5 h-5" />
-              <span>{isDownloading ? "Downloading..." : "Download Now"}</span>
-            </button>
-          </div>
-
-          {/* Back Home CTA */}
-          <div className="text-center mt-8 animate-in fade-in duration-700 delay-500">
-            <Button
-              onClick={() => router.push("/")}
-              variant="ghost"
-              className="text-muted-foreground hover:text-foreground font-medium text-sm"
-            >
-              Try another vibe
-            </Button>
-          </div>
-        </div>
-      </main>
+      {/* Back Home CTA */ }
+      < div className = "text-center mt-8 animate-in fade-in duration-700 delay-500" >
+        <Button
+          onClick={() => router.push("/")}
+          variant="ghost"
+          className="text-muted-foreground hover:text-foreground font-medium text-sm"
+        >
+          Try another vibe
+        </Button>
+          </div >
+        </div >
+      </main >
     </>
   )
 }

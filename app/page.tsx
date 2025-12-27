@@ -161,30 +161,43 @@ export default function Home() {
               onKeyDown={(e) => e.key === "Enter" && handleContribute()}
               placeholder="Share your vibr"
               title="Describe a feeling, relationship, or experience"
-              className="w-full px-3 sm:px-4 py-2 pr-20 sm:pr-24 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all text-sm truncate"
+              className="w-full px-3 sm:px-4 py-2 pr-[9.5rem] sm:pr-[11rem] rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all text-sm truncate"
               style={{
                 maskImage: "linear-gradient(to right, black 70%, transparent 100%)",
                 WebkitMaskImage: "linear-gradient(to right, black 70%, transparent 100%)"
               }}
             />
-            <select
-              value={selectedCategory || ""}
-              onChange={(e) => setSelectedCategory(e.target.value as Category)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 px-2 sm:px-3 py-1 sm:py-1.5 bg-primary/10 dark:bg-primary/20 border-2 border-primary/40 dark:border-primary/50 text-foreground rounded-lg focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer text-xs font-semibold hover:bg-primary/20 dark:hover:bg-primary/30 transition-all shadow-sm backdrop-blur-sm"
-              title="Select category for this vibe"
-            >
-              <option value="" disabled>Select</option>
-              <option value="football">Football</option>
-              <option value="relationship">Street</option>
-              <option value="money">Corporate</option>
-              <option value="career">Church</option>
-              <option value="family">Family</option>
-              <option value="friends">Friends</option>
-              <option value="health">Health</option>
-              <option value="education">Education</option>
-              <option value="travel">Travel</option>
-              <option value="lifestyle">Lifestyle</option>
-            </select>
+            <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center gap-1 bg-background/50 backdrop-blur-sm p-1 rounded-md">
+              <select
+                value={selectedCategory || ""}
+                onChange={(e) => setSelectedCategory(e.target.value as Category)}
+                className="px-2 py-1 bg-primary/10 dark:bg-primary/20 border border-primary/30 dark:border-primary/40 text-foreground rounded-md focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer text-xs font-semibold hover:bg-primary/20 dark:hover:bg-primary/30 transition-all shadow-sm"
+                title="Select category"
+              >
+                <option value="" disabled>Select</option>
+                <option value="football">Football</option>
+                <option value="relationship">Street</option>
+                <option value="money">Corporate</option>
+                <option value="career">Church</option>
+                <option value="family">Family</option>
+                <option value="friends">Friends</option>
+                <option value="health">Health</option>
+                <option value="education">Education</option>
+                <option value="travel">Travel</option>
+                <option value="lifestyle">Lifestyle</option>
+              </select>
+              <button
+                onClick={handleContribute}
+                disabled={!contributionInput.trim()}
+                title="Submit your vibe"
+                className="p-1.5 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white shadow-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           {/* Theme Toggle */}
