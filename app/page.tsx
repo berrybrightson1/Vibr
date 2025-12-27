@@ -208,13 +208,13 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 w-full flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 py-2 md:py-4 relative z-10">
+      <main className="flex-1 w-full flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 py-1 md:py-3 relative z-10">
         <div className="w-full max-w-5xl">
-          <div className="text-center mb-4 md:mb-6">
-            <div className="flex justify-center mb-2">
+          <div className="text-center mb-3 md:mb-5">
+            <div className="flex justify-center mb-1">
               <AIListeningOrb />
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-balance mb-1">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight text-balance mb-0.5">
               What's your
               <br />
               vibe today?
