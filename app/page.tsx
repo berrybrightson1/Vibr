@@ -166,17 +166,17 @@ export default function Home() {
               <select
                 value={selectedCategory || ""}
                 onChange={(e) => setSelectedCategory(e.target.value as Category)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-card dark:bg-zinc-900 border border-primary/50 dark:border-primary/60 text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer text-sm font-medium hover:bg-primary/10 dark:hover:bg-primary/20 transition-all w-16"
+                className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 border-2 border-primary/40 dark:border-primary/50 text-foreground rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer text-xs font-semibold hover:bg-primary/20 dark:hover:bg-primary/30 transition-all shadow-sm backdrop-blur-sm"
                 title="Select category for this vibe"
               >
-                <option value="" disabled>📂</option>
-                <option value="football">⚽ Football</option>
-                <option value="relationship">🍳 Street</option>
-                <option value="money">💼 Corporate</option>
-                <option value="career">⛪ Church</option>
-                <option value="health">❤️ Health</option>
-                <option value="education">📚 Education</option>
-                <option value="travel">✈️ Travel</option>
+                <option value="" disabled>Select</option>
+                <option value="football">Football</option>
+                <option value="relationship">Street</option>
+                <option value="money">Corporate</option>
+                <option value="career">Church</option>
+                <option value="health">Health</option>
+                <option value="education">Education</option>
+                <option value="travel">Travel</option>
               </select>
             </div>
             <button
