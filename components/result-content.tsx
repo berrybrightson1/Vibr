@@ -180,7 +180,12 @@ export function ResultContent() {
 
                 {/* Quote */}
                 <div className="flex-1 py-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-black leading-snug">"{currentQuote}"</p>
+                  <p className={`font-black leading-snug ${currentQuote.length > 150
+                      ? 'text-3xl md:text-4xl lg:text-5xl'
+                      : currentQuote.length > 100
+                        ? 'text-4xl md:text-5xl lg:text-6xl'
+                        : 'text-5xl md:text-6xl lg:text-7xl'
+                    }`}>"{currentQuote}"</p>
                 </div>
 
                 {/* Footer Section */}
