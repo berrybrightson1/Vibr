@@ -58,17 +58,17 @@ export function CategorySlider({ selectedCategory, onSelectCategory }: CategoryS
         ))}
       </div>
 
-      <div className="flex justify-center gap-2 pt-2">
+      <div className="flex justify-center gap-1 pt-1">
         {Array.from({ length: totalSlides }).map((_, index) => (
           <button
             key={index}
             onClick={() => {
               const targetIndex = index * itemsPerSlide
-              handleCategoryClick(targetIndex) // Use the unified click handler
+              handleCategoryClick(targetIndex)
             }}
             className={`rounded-full transition-all duration-500 ${Math.floor(currentIndex / itemsPerSlide) === index
-              ? "bg-primary w-8 h-2.5"
-              : "bg-muted-foreground/30 w-2.5 h-2.5 hover:bg-muted-foreground/60"
+              ? "bg-primary/60 w-3 h-1"
+              : "bg-muted-foreground/20 w-1 h-1 hover:bg-muted-foreground/40"
               }`}
             aria-label={`Go to slide ${index + 1}`}
           />
