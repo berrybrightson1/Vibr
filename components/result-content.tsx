@@ -212,14 +212,18 @@ export function ResultContent() {
           </div>
         </div>
 
-        {/* Fixed Footer */}
-        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/95 to-transparent backdrop-blur-lg border-t border-white/10 z-50">
+        {/* Fixed Footer - Theme Aware */}
+        <div className={`fixed bottom-0 left-0 right-0 border-t z-50 transition-colors duration-300 ${isDark
+            ? 'bg-gradient-to-t from-black via-black/95 to-transparent border-white/10 backdrop-blur-lg'
+            : 'bg-gradient-to-t from-white via-white/95 to-transparent border-zinc-200 backdrop-blur-lg'
+          }`}>
           <div className="max-w-2xl mx-auto px-6 py-4 space-y-3">
             {/* Navigation Row */}
             <div className="flex items-center justify-between gap-3">
               <button
                 onClick={() => router.push("/")}
-                className="p-2 rounded-lg hover:bg-white/10 transition-colors text-white"
+                className={`p-2 rounded-lg transition-colors ${isDark ? 'hover:bg-white/10 text-white' : 'hover:bg-zinc-900/10 text-zinc-900'
+                  }`}
                 title="Go back"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -229,7 +233,10 @@ export function ResultContent() {
                 onClick={() => handleNext()}
                 disabled={isGenerating}
                 data-testid="next-btn"
-                className="flex-1 px-6 py-2.5 bg-white/10 hover:bg-white/20 rounded-lg font-semibold transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-white"
+                className={`flex-1 px-6 py-2.5 rounded-lg font-semibold transition-all disabled:opacity-50 flex items-center justify-center gap-2 ${isDark
+                    ? 'bg-white/10 hover:bg-white/20 text-white'
+                    : 'bg-zinc-900/10 hover:bg-zinc-900/20 text-zinc-900'
+                  }`}
               >
                 <ChevronRight className="w-5 h-5" />
                 <span className="text-sm">{isGenerating ? "Generating..." : "Next Vibe"}</span>
@@ -239,7 +246,8 @@ export function ResultContent() {
                 onClick={handleShare}
                 aria-label="Share vibe"
                 data-testid="share-btn"
-                className="p-2 rounded-lg hover:bg-white/10 transition-colors text-white"
+                className={`p-2 rounded-lg transition-colors ${isDark ? 'hover:bg-white/10 text-white' : 'hover:bg-zinc-900/10 text-zinc-900'
+                  }`}
                 title="Share"
               >
                 <Share2 className="w-5 h-5" />
@@ -262,4 +270,3 @@ export function ResultContent() {
     </>
   )
 }
-
