@@ -36,6 +36,30 @@ export const vibeDB = {
       },
     ],
   },
+  family: {
+    label: "Family",
+    color: "bg-gradient-to-br from-orange-700 to-amber-900",
+    icon: "👨‍👩‍👧‍👦",
+    data: [],
+  },
+  career: {
+    label: "Career",
+    color: "bg-gradient-to-br from-purple-900 to-indigo-900",
+    icon: "📈",
+    data: [],
+  },
+  friends: {
+    label: "Friends",
+    color: "bg-gradient-to-br from-pink-700 to-rose-900",
+    icon: "🤝",
+    data: [],
+  },
+  lifestyle: {
+    label: "Lifestyle",
+    color: "bg-gradient-to-br from-teal-700 to-cyan-900",
+    icon: "🧘‍♀️",
+    data: [],
+  },
   church: {
     color: "from-purple-900 to-slate-900",
     icon: "⛪",

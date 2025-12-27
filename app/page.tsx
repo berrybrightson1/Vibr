@@ -178,9 +178,12 @@ export default function Home() {
               <option value="relationship">Street</option>
               <option value="money">Corporate</option>
               <option value="career">Church</option>
+              <option value="family">Family</option>
+              <option value="friends">Friends</option>
               <option value="health">Health</option>
               <option value="education">Education</option>
               <option value="travel">Travel</option>
+              <option value="lifestyle">Lifestyle</option>
             </select>
           </div>
 
@@ -192,13 +195,13 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 w-full flex flex-col items-center justify-center px-8 md:px-16 py-16 md:py-20 relative z-10">
+      <main className="flex-1 w-full flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 py-6 md:py-10 relative z-10">
         <div className="w-full max-w-5xl">
-          <div className="text-center mb-16 md:mb-20">
-            <div className="flex justify-center mb-10">
+          <div className="text-center mb-8 md:mb-10">
+            <div className="flex justify-center mb-6">
               <AIListeningOrb />
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-balance mb-3">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-balance mb-2">
               What's your
               <br />
               vibe today?
