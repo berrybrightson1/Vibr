@@ -159,7 +159,7 @@ export default function Home() {
                 value={contributionInput}
                 onChange={(e) => setContributionInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleContribute()}
-                placeholder="Share your vibe/advice..."
+                placeholder="Share your vibr"
                 title="Describe a feeling, relationship, or experience"
                 className="w-full px-4 py-2 pr-28 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all"
               />
