@@ -211,10 +211,10 @@ export default function Home() {
       <main className="flex-1 w-full flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 py-1 md:py-3 relative z-10">
         <div className="w-full max-w-5xl">
           <div className="text-center mb-3 md:mb-5">
-            <div className="flex justify-center mb-1">
+            <div className="flex justify-center mb-0 sm:mb-2">
               <AIListeningOrb />
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight text-balance mb-0.5">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-balance mb-0 text-foreground">
               Got a vibe ?
             </h2>
             <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
