@@ -149,3 +149,13 @@
     text-wrap: balance;
   }
 }
+
+/* Custom link and hover colors */
+a {
+  color: hsl(var(--foreground));
+}
+
+a:hover {
+  color: hsl(var(--primary));
+  transition: color 0.2s ease;
+}
