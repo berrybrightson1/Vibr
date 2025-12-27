@@ -211,9 +211,6 @@ export const vibeDB = {
       },
     ],
   },
-  parse: {
-    // Placeholder for the parse category updates
-  },
 }
 
 export type Category = keyof typeof vibeDB

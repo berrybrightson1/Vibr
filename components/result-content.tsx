@@ -51,19 +51,15 @@ export function ResultContent() {
 
       if (response.ok) {
         const { quote: newQuote } = await response.json()
-        if (newQuote && !alternatives.includes(newQuote)) {
+        if (newQuote) {
           const newAlternatives = [...alternatives, newQuote]
           setAlternatives(newAlternatives)
           setCurrentIndex(newAlternatives.length - 1)
           showToast("New vibe generated!")
-        } else {
-          showToast("Generating alternative...")
-          setTimeout(() => handleNext(), 500)
-          return
         }
       }
     } catch (error) {
-      showToast("Failed to generate alternative")
+      showToast("Failed to generate vibe")
     } finally {
       setIsGenerating(false)
     }
@@ -105,16 +101,20 @@ export function ResultContent() {
   }
 
   const handleDownload = async () => {
-    if (!cardRef.current) {
-      showToast("Error loading card")
-      return
-    }
-
     setIsDownloading(true)
     try {
-      const clone = cardRef.current.cloneNode(true) as HTMLElement
+      const cardElement = document.querySelector(".vibe-card")
+      if (!cardElement) {
+        showToast("Card element not found")
+        return
+      }
+
+      const html2canvas = (await import("html2canvas")).default
+
+      const clone = cardElement.cloneNode(true) as HTMLElement
       clone.style.position = "absolute"
       clone.style.left = "-9999px"
+      clone.style.top = "0"
       document.body.appendChild(clone)
 
       const canvas = await html2canvas(clone, {
@@ -122,7 +122,7 @@ export function ResultContent() {
         scale: 2,
         useCORS: true,
         allowTaint: true,
-        imageTimeout: 10000,
+        imageTimeout: 15000,
         logging: false,
       })
 
@@ -130,14 +130,14 @@ export function ResultContent() {
 
       const jpegData = canvas.toDataURL("image/jpeg", 0.95)
       const link = document.createElement("a")
-      link.href = jpegData
       link.download = `vibr-${category}-${Date.now()}.jpg`
+      link.href = jpegData
       link.click()
 
       showToast("Downloaded!")
     } catch (error) {
-      console.log("[v0] Download error:", error)
-      showToast("Download error - please try again")
+      console.error("Download error:", error)
+      showToast("Download failed - please try again")
     } finally {
       setIsDownloading(false)
     }
@@ -224,14 +224,17 @@ export function ResultContent() {
               <button
                 onClick={handlePrevious}
                 disabled={currentIndex === 0}
+                aria-label="Previous vibe"
+                data-testid="prev-btn"
                 className="px-4 py-4 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 disabled:opacity-30 disabled:cursor-not-allowed text-zinc-400 hover:text-white rounded-xl flex items-center justify-center transition-all active:scale-95 font-semibold"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
 
               <button
-                onClick={handleNext}
+                onClick={() => handleNext()}
                 disabled={isGenerating}
+                data-testid="next-btn"
                 className="flex-1 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 disabled:opacity-50 text-zinc-400 hover:text-white py-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 font-semibold"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -240,6 +243,8 @@ export function ResultContent() {
 
               <button
                 onClick={handleShare}
+                aria-label="Share vibe"
+                data-testid="share-btn"
                 className="px-4 py-4 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 hover:text-green-400 rounded-xl flex items-center justify-center transition-all active:scale-95 font-semibold"
               >
                 <Share2 className="w-5 h-5" />
@@ -250,6 +255,7 @@ export function ResultContent() {
             <button
               onClick={handleDownload}
               disabled={isDownloading}
+              data-testid="download-btn"
               className="w-full bg-green-500 hover:bg-green-400 text-black font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-green-900/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-base"
             >
               <Download className="w-5 h-5" />

@@ -7,6 +7,7 @@ import { InputSection } from "@/components/input-section"
 import { CategorySlider } from "@/components/category-slider"
 import { FloatingEmojis } from "@/components/floating-emojis"
 import { AIListeningOrb } from "@/components/ai-listening-orb"
+import { contributeStore } from "@/lib/contribute-store"
 import type { Category } from "@/lib/vibe-db"
 import type { Model } from "@/components/model-selector"
 
@@ -19,6 +20,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
   const [selectedModel, setSelectedModel] = useState<string | null>(null)
   const [selectedModelApiKey, setSelectedModelApiKey] = useState<string | null>(null)
+  const [contributionInput, setContributionInput] = useState("")
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark)
@@ -49,6 +51,24 @@ export default function Home() {
     setSelectedModel(null)
     setSelectedModelApiKey(null)
     localStorage.removeItem("vibr_model_config")
+  }
+
+  const handleContribute = () => {
+    const phrase = contributionInput.trim()
+    if (!phrase || !selectedCategory) return
+
+    contributeStore.addContribution(phrase, selectedCategory)
+    setContributionInput("")
+
+    // Show success feedback
+    const toast = document.createElement("div")
+    toast.className = "fixed top-20 right-4 bg-green-500 text-black px-6 py-3 rounded-lg font-semibold z-50 animate-fade-in"
+    toast.textContent = "✓ Vibe added to " + selectedCategory + "!"
+    document.body.appendChild(toast)
+    setTimeout(() => {
+      toast.classList.add("opacity-0", "transition-opacity")
+      setTimeout(() => toast.remove(), 300)
+    }, 2000)
   }
 
   const handleTranslate = async () => {
@@ -93,12 +113,31 @@ export default function Home() {
 
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between gap-4">
           <h1 className="text-3xl font-black tracking-tight">
             Vib<span className="text-primary">r</span>
             <span className="text-primary">.</span>
           </h1>
-          <ThemeToggle isDark={isDark} onChange={setIsDark} />
+
+          {/* Contribution Section */}
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              value={contributionInput}
+              onChange={(e) => setContributionInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleContribute()}
+              placeholder="Contribute a vibe..."
+              className="px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all w-48 md:w-64"
+            />
+            <button
+              onClick={handleContribute}
+              disabled={!contributionInput.trim() || !selectedCategory}
+              className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all whitespace-nowrap"
+            >
+              Submit
+            </button>
+            <ThemeToggle isDark={isDark} onChange={setIsDark} />
+          </div>
         </div>
       </header>
 

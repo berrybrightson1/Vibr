@@ -7,11 +7,20 @@ export async function POST(request: Request) {
     }
 
     const { vibeDB } = await import("@/lib/vibe-db")
+    const { contributeStore } = await import("@/lib/contribute-store")
     const categoryData = vibeDB[category as keyof typeof vibeDB]
 
     let responseText = ""
 
-    if (categoryData?.data) {
+    // First check user contributions
+    const userContributions = contributeStore.getContributionsByCategory(category)
+    if (userContributions.length > 0) {
+      // Simple random selection from contributions
+      responseText = userContributions[Math.floor(Math.random() * userContributions.length)]
+    }
+
+    // If no contribution match, check vibeDB
+    if (!responseText && categoryData?.data) {
       const inputLower = input.toLowerCase()
 
       for (const vibe of categoryData.data) {
@@ -30,19 +39,26 @@ export async function POST(request: Request) {
     }
 
     if (!responseText && modelId && apiKey) {
-      const enhancedPrompt = `You are Vibr, a creative vibe translator. Generate a short, witty, one-liner response that translates the user's vibe/feeling into context-specific slang or metaphor for the ${category} category.
+      const enhancedPrompt = `You are Vibr, a thoughtful vibe translator specializing in ${category}. Generate mindful, advice-based responses that translate the user's feeling into insightful wisdom.
 
-IMPORTANT: Your response MUST be directly related to what the user said. Use specific references from their input, not generic phrases.
-
-The response should be:
+IMPORTANT STYLE GUIDELINES - Your responses should be:
+- Thoughtful and advisory (not just witty/funny)
 - 1-2 sentences max
-- Creative and funny, matching the ${category} culture/vibe
-- In "${perspective === "me" ? "first person (I/me)" : "second person (you)"}}"
-- Include specific metaphors or references related to "${category}"
-- Directly address the feeling/situation: "${input}"
+- In "${perspective === "me" ? "first person (I/me)" : "second person (you)"}" perspective
+- Directly relevant to: "${input}"
+
+EXAMPLES OF THE TONE (for football category):
+- "Always check the medicals before signing. Some injuries aren't visible on the pitch."
+- "Be careful of football players who have played for many teams within a short period of time"
+- "Leave the football before the football leaves you."
+- "Another team recommended this player and there's rumours that she will sign for the club in the January transfer window."
+
+Your response should follow this mindful, advisory style. Make it specific to their situation and provide genuine insight.
 
 User's feeling: "${input}"
-Respond ONLY with the translation, nothing else. Make it relevant to their specific vibe.`
+Category: ${category}
+
+Respond ONLY with the translation, nothing else.`
 
       try {
         if (modelId === "openai") {
