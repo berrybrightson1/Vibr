@@ -148,17 +148,17 @@ export default function Home() {
               <select
                 value={selectedCategory || ""}
                 onChange={(e) => setSelectedCategory(e.target.value as Category)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 backdrop-blur border-2 border-primary/30 dark:border-primary/40 text-foreground rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer text-xs font-semibold hover:bg-primary/20 dark:hover:bg-primary/30 transition-all shadow-sm min-w-[110px]"
+                className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-card backdrop-blur border border-primary/50 dark:border-primary/60 text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer text-xs font-medium hover:bg-primary/10 dark:hover:bg-primary/20 transition-all min-w-[110px]"
                 title="Select category for this vibe"
               >
-                <option value="" disabled>Select Category</option>
-                <option value="football">Football</option>
-                <option value="relationship">Street</option>
-                <option value="money">Corporate</option>
-                <option value="career">Church</option>
-                <option value="health">Health</option>
-                <option value="education">Education</option>
-                <option value="travel">Travel</option>
+                <option value="" disabled className="bg-background text-foreground">Select Category</option>
+                <option value="football" className="bg-background text-foreground hover:bg-primary/10">Football</option>
+                <option value="relationship" className="bg-background text-foreground hover:bg-primary/10">Street</option>
+                <option value="money" className="bg-background text-foreground hover:bg-primary/10">Corporate</option>
+                <option value="career" className="bg-background text-foreground hover:bg-primary/10">Church</option>
+                <option value="health" className="bg-background text-foreground hover:bg-primary/10">Health</option>
+                <option value="education" className="bg-background text-foreground hover:bg-primary/10">Education</option>
+                <option value="travel" className="bg-background text-foreground hover:bg-primary/10">Travel</option>
               </select>
             </div>
             <button
