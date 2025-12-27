@@ -159,7 +159,7 @@ export function ResultContent() {
             ref={cardRef}
             className="relative rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-500"
           >
-            <div className={`${categoryData.color} p-8 md:p-10 text-white relative`}>
+            <div className={`${categoryData.color} p-8 md:p-10 relative ${isDark ? 'text-white' : 'text-zinc-900'}`}>
               {/* Background blur effects */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
@@ -170,8 +170,8 @@ export function ResultContent() {
                 {/* Top Section - Category Badge */}
                 <div className="animate-in fade-in slide-in-from-top-4 duration-700 delay-100">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 bg-white/70 rounded-full animate-pulse" />
-                    <span className="text-xs font-bold tracking-widest text-white/70 uppercase">Vibr Translation</span>
+                    <div className={`w-2 h-2 rounded-full animate-pulse ${isDark ? 'bg-white/70' : 'bg-zinc-900/70'}`} />
+                    <span className={`text-xs font-bold tracking-widest uppercase ${isDark ? 'text-white/70' : 'text-zinc-900/70'}`}>Vibr Translation</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-tight">
                     {categoryData.label} Vibes
@@ -181,21 +181,21 @@ export function ResultContent() {
                 {/* Quote */}
                 <div className="flex-1 py-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
                   <p className={`font-black leading-snug ${currentQuote.length > 150
-                      ? 'text-3xl md:text-4xl lg:text-5xl'
-                      : currentQuote.length > 100
-                        ? 'text-4xl md:text-5xl lg:text-6xl'
-                        : 'text-5xl md:text-6xl lg:text-7xl'
+                    ? 'text-3xl md:text-4xl lg:text-5xl'
+                    : currentQuote.length > 100
+                      ? 'text-4xl md:text-5xl lg:text-6xl'
+                      : 'text-5xl md:text-6xl lg:text-7xl'
                     }`}>"{currentQuote}"</p>
                 </div>
 
                 {/* Footer Section */}
-                <div className="border-t border-white/20 pt-4 md:pt-5 grid grid-cols-2 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+                <div className={`border-t pt-4 md:pt-5 grid grid-cols-2 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 ${isDark ? 'border-white/20' : 'border-zinc-900/20'}`}>
                   <div>
-                    <p className="text-xs text-white/60 mb-1 uppercase tracking-wide font-semibold">About Us</p>
-                    <p className="text-sm font-bold text-white">{perspective === "me" ? "My Vibe" : "Your Vibe"}</p>
+                    <p className={`text-xs mb-1 uppercase tracking-wide font-semibold ${isDark ? 'text-white/60' : 'text-zinc-900/60'}`}>About Us</p>
+                    <p className={`text-sm font-bold ${isDark ? 'text-white' : 'text-zinc-900'}`}>{perspective === "me" ? "My Vibe" : "Your Vibe"}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-white/60 uppercase tracking-wide font-semibold mb-2">Download Now</p>
+                    <p className={`text-xs uppercase tracking-wide font-semibold mb-2 ${isDark ? 'text-white/60' : 'text-zinc-900/60'}`}>Download Now</p>
                     <Button
                       onClick={() => router.push("/")}
                       className="bg-white/20 hover:bg-white/30 text-white font-bold text-sm px-4 py-1.5 rounded-lg backdrop-blur"
