@@ -17,9 +17,10 @@ export async function POST(request: Request) {
       for (const vibe of categoryData.data) {
         if (vibe.keys.includes("generic")) continue
 
-        const matchesKeyword = vibe.keys.some(
-          (key) => inputLower.includes(key) || inputLower.includes(key.substring(0, key.length - 1)),
-        )
+        const matchesKeyword = vibe.keys.some((key) => {
+          if (key.length <= 3) return inputLower.includes(key)
+          return inputLower.includes(key) || inputLower.includes(key.substring(0, key.length - 1))
+        })
 
         if (matchesKeyword) {
           responseText = perspective === "me" ? vibe.me : vibe.you
