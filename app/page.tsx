@@ -53,6 +53,20 @@ export default function Home() {
     localStorage.removeItem("vibr_model_config")
   }
 
+  const showFeedback = (message: string, type: "success" | "error" | "warning") => {
+    const bgColor = type === "success" ? "bg-green-500" : type === "error" ? "bg-red-500" : "bg-yellow-500"
+
+    const toast = document.createElement("div")
+    toast.className = `fixed top-20 right-4 ${bgColor} text-black px-6 py-3 rounded-lg font-semibold z-50 shadow-lg`
+    toast.textContent = message
+    document.body.appendChild(toast)
+
+    setTimeout(() => {
+      toast.classList.add("opacity-0", "transition-opacity", "duration-300")
+      setTimeout(() => toast.remove(), 300)
+    }, 3000)
+  }
+
   const handleContribute = () => {
     const phrase = contributionInput.trim()
     if (!phrase || !selectedCategory) return
