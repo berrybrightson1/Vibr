@@ -172,11 +172,6 @@ export function InputSection({
           </button>
         </div>
       )}
-
-      {/* Help text */}
-      <p className="text-xs text-muted-foreground dark:text-muted-foreground text-center font-medium">
-        Ctrl + Enter to translate
-      </p>
     </div>
   )
 }
