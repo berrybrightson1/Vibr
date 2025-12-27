@@ -215,14 +215,10 @@ export default function Home() {
               <AIListeningOrb />
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight text-balance mb-0.5">
-              What's your
-              <br />
-              vibe today?
+              Got a vibe ?
             </h2>
             <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Choose a category,
-              <br />
-              express yourself.
+              Choose a category, express yourself.
             </p>
           </div>
 
