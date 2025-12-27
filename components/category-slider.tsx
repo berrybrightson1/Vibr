@@ -42,17 +42,16 @@ export function CategorySlider({ selectedCategory, onSelectCategory }: CategoryS
     <div className="space-y-4">
       <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Categories</p>
 
-      <div ref={scrollContainerRef} className="flex gap-3 overflow-x-auto scroll-smooth pb-3 hide-scrollbar">
+      <div ref={scrollContainerRef} className="flex flex-wrap gap-2 sm:gap-3">
         {categories.map((category, index) => (
           <Button
             key={category}
             onClick={() => handleCategoryClick(index)}
             variant={selectedCategory === category ? "default" : "outline"}
-            className={`whitespace-nowrap flex-shrink-0 py-2 px-6 font-semibold text-sm rounded-xl transition-all duration-300 ${
-              selectedCategory === category
+            className={`whitespace-nowrap flex-shrink-0 py-2 px-4 sm:px-6 font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 ${selectedCategory === category
                 ? "bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg"
                 : "bg-card hover:bg-primary/10 hover:text-primary text-foreground dark:text-muted-foreground border-border"
-            }`}
+              }`}
           >
             {vibeDB[category].label}
           </Button>
@@ -74,11 +73,10 @@ export function CategorySlider({ selectedCategory, onSelectCategory }: CategoryS
                 })
               }
             }}
-            className={`rounded-full transition-all duration-500 ${
-              Math.floor(currentIndex / itemsPerSlide) === index
+            className={`rounded-full transition-all duration-500 ${Math.floor(currentIndex / itemsPerSlide) === index
                 ? "bg-primary w-8 h-2.5"
                 : "bg-muted-foreground/30 w-2.5 h-2.5 hover:bg-muted-foreground/60"
-            }`}
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

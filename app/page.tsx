@@ -166,17 +166,17 @@ export default function Home() {
               <select
                 value={selectedCategory || ""}
                 onChange={(e) => setSelectedCategory(e.target.value as Category)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-card backdrop-blur border border-primary/50 dark:border-primary/60 text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer text-xs font-medium hover:bg-primary/10 dark:hover:bg-primary/20 transition-all min-w-[110px]"
+                className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-card dark:bg-zinc-900 border border-primary/50 dark:border-primary/60 text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer text-sm font-medium hover:bg-primary/10 dark:hover:bg-primary/20 transition-all w-16"
                 title="Select category for this vibe"
               >
-                <option value="" disabled className="bg-background text-foreground">Select Category</option>
-                <option value="football" className="bg-background text-foreground hover:bg-primary/10">Football</option>
-                <option value="relationship" className="bg-background text-foreground hover:bg-primary/10">Street</option>
-                <option value="money" className="bg-background text-foreground hover:bg-primary/10">Corporate</option>
-                <option value="career" className="bg-background text-foreground hover:bg-primary/10">Church</option>
-                <option value="health" className="bg-background text-foreground hover:bg-primary/10">Health</option>
-                <option value="education" className="bg-background text-foreground hover:bg-primary/10">Education</option>
-                <option value="travel" className="bg-background text-foreground hover:bg-primary/10">Travel</option>
+                <option value="" disabled>📂</option>
+                <option value="football">⚽ Football</option>
+                <option value="relationship">🍳 Street</option>
+                <option value="money">💼 Corporate</option>
+                <option value="career">⛪ Church</option>
+                <option value="health">❤️ Health</option>
+                <option value="education">📚 Education</option>
+                <option value="travel">✈️ Travel</option>
               </select>
             </div>
             <button
