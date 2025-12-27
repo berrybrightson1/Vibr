@@ -91,12 +91,25 @@ export function InputSection({
                 </button>
               </div>
 
+              {/* Auto-selected model display */}
+              <div className="px-2 py-1 bg-primary/10 dark:bg-primary/20 rounded-md text-xs font-medium text-primary dark:text-primary flex items-center gap-1.5" title="AI model auto-selected based on your prompt">
+                <span>AI:</span>
+                <span>
+                  {selectedModel
+                    ? `${AVAILABLE_MODELS.find(m => m.id === selectedModel)?.logo} ${AVAILABLE_MODELS.find(m => m.id === selectedModel)?.name.split(' ')[0]}`
+                    : '🤖 Auto'
+                  }
+                </span>
+              </div>
+
+              {/* Hidden for now - Manual model selector 
               <div className="flex items-center gap-2">
                 <ModelSelector selectedModel={selectedModel} onModelSelect={onModelSelect} onModelClear={onModelClear} />
                 {!selectedModel && (
                   <span className="text-xs text-muted-foreground" title="Best model will be auto-selected for you">Auto 🤖</span>
                 )}
               </div>
+              */}
             </div>
 
             {/* Right controls - Category selector and Submit button */}
