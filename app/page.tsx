@@ -90,6 +90,24 @@ export default function Home() {
 
     setIsLoading(true)
     try {
+      // Auto-select best model if none is manually chosen
+      let modelToUse = selectedModel
+      let apiKeyToUse = selectedModelApiKey
+
+      if (!modelToUse) {
+        const { selectBestModel } = await import("@/lib/smart-model-selection")
+        modelToUse = selectBestModel(input, selectedCategory)
+
+        // Check if we have an API key saved for the auto-selected model
+        const savedConfig = localStorage.getItem("vibr_model_config")
+        if (savedConfig) {
+          const config = JSON.parse(savedConfig)
+          if (config.model === modelToUse) {
+            apiKeyToUse = config.apiKey
+          }
+        }
+      }
+
       const response = await fetch("/api/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -97,8 +115,8 @@ export default function Home() {
           input: input.trim(),
           category: selectedCategory,
           perspective,
-          modelId: selectedModel || null,
-          apiKey: selectedModelApiKey || null,
+          modelId: modelToUse,
+          apiKey: apiKeyToUse,
         }),
       })
 

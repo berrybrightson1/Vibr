@@ -68,20 +68,21 @@ export function ModelSelector({ selectedModel, onModelSelect, onModelClear }: Mo
       </button>
 
       {isOpen && (
-        <div className="absolute top-12 left-0 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl z-50 w-48 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute top-12 right-0 bg-card dark:bg-zinc-900 border border-primary/30 dark:border-zinc-700 rounded-xl shadow-2xl z-50 w-72 max-h-[400px] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
           {!pendingModel ? (
-            <div className="py-1 max-h-64 overflow-y-auto">
+            <div className="overflow-y-auto max-h-[360px]">
+              <p className="px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wide bg-muted/30 sticky top-0 z-10">Choose AI Model</p>
               {AVAILABLE_MODELS.map((model, index) => (
                 <button
                   key={model.id}
                   onClick={() => handleModelClick(model)}
-                  className="w-full px-3 py-2 text-left hover:bg-zinc-800 transition-all duration-150 flex items-center gap-2 text-xs animate-in fade-in slide-in-from-left-2"
+                  className="w-full px-4 py-3 text-left hover:bg-primary/10 dark:hover:bg-zinc-800 transition-all duration-150 flex items-center gap-3 border-b border-border dark:border-zinc-800 last:border-0"
                   style={{ animationDelay: `${index * 30}ms` }}
                 >
-                  <span className="text-sm">{model.logo}</span>
-                  <div>
-                    <div className="font-medium text-zinc-100 text-xs">{model.name}</div>
-                    <div className="text-xs text-zinc-500">{model.provider}</div>
+                  <span className="text-xl">{model.logo}</span>
+                  <div className="flex-1">
+                    <div className="font-semibold text-foreground">{model.name}</div>
+                    <div className="text-xs text-muted-foreground">{model.provider}</div>
                   </div>
                 </button>
               ))}
