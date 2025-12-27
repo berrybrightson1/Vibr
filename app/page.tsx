@@ -145,7 +145,7 @@ export default function Home() {
 
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-8 md:px-12 py-5 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-4 sm:py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
           <h1 className="text-3xl font-black tracking-tight">
             Vib<span className="text-primary">r</span>
             <span className="text-primary">.</span>
@@ -153,7 +153,7 @@ export default function Home() {
 
           {/* Contribution Section */}
           <div className="flex items-center gap-2">
-            <div className="relative flex-1 max-w-md">
+            <div className="relative flex-1 max-w-full sm:max-w-md">
               <input
                 type="text"
                 value={contributionInput}
@@ -199,7 +199,7 @@ export default function Home() {
             <div className="flex justify-center mb-10">
               <AIListeningOrb />
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-balance mb-3">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-balance mb-3">
               What's your
               <br />
               vibe today?
