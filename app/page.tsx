@@ -148,9 +148,8 @@ export default function Home() {
               <select
                 value={selectedCategory || ""}
                 onChange={(e) => setSelectedCategory(e.target.value as Category)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-background/90 backdrop-blur border border-border text-foreground rounded-md focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer text-xs font-medium hover:bg-accent transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 backdrop-blur border-2 border-primary/30 dark:border-primary/40 text-foreground rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer text-xs font-semibold hover:bg-primary/20 dark:hover:bg-primary/30 transition-all shadow-sm min-w-[110px]"
                 title="Select category for this vibe"
-                style={{ minWidth: '110px' }}
               >
                 <option value="" disabled>Select Category</option>
                 <option value="football">Football</option>
