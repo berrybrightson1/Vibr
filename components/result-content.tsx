@@ -198,7 +198,10 @@ export function ResultContent() {
                     <p className={`text-xs uppercase tracking-wide font-semibold mb-2 ${isDark ? 'text-white/60' : 'text-zinc-900/60'}`}>Download Now</p>
                     <Button
                       onClick={() => router.push("/")}
-                      className="bg-white/20 hover:bg-white/30 text-white font-bold text-sm px-4 py-1.5 rounded-lg backdrop-blur"
+                      className={`font-bold text-sm px-4 py-1.5 rounded-lg backdrop-blur ${isDark
+                          ? 'bg-white/20 hover:bg-white/30 text-white'
+                          : 'bg-zinc-900/20 hover:bg-zinc-900/30 text-zinc-900'
+                        }`}
                     >
                       Vibr App
                     </Button>
