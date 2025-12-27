@@ -135,18 +135,35 @@ export default function Home() {
 
           {/* Contribution Section */}
           <div className="flex items-center gap-2">
-            <input
-              type="text"
-              value={contributionInput}
-              onChange={(e) => setContributionInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleContribute()}
-              placeholder="Share your vibe/advice..."
-              title="Describe a feeling, relationship, or experience in the selected category"
-              className="px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all w-48 md:w-64"
-            />
+            <div className="relative flex-1 max-w-md">
+              <input
+                type="text"
+                value={contributionInput}
+                onChange={(e) => setContributionInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleContribute()}
+                placeholder="Share your vibe/advice..."
+                title="Describe a feeling, relationship, or experience"
+                className="w-full px-4 py-2 pr-10 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all"
+              />
+              <select
+                value={selectedCategory || ""}
+                onChange={(e) => setSelectedCategory(e.target.value as Category)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-none text-muted-foreground hover:text-foreground focus:outline-none cursor-pointer text-sm"
+                title="Select category for this vibe"
+              >
+                <option value="" disabled>↓ Category</option>
+                <option value="football">⚽ Football</option>
+                <option value="relationship">❤️ Relationship</option>
+                <option value="money">💰 Money</option>
+                <option value="career">💼 Career</option>
+                <option value="health">🏥 Health</option>
+                <option value="education">📚 Education</option>
+                <option value="travel">✈️ Travel</option>
+              </select>
+            </div>
             <button
               onClick={handleContribute}
-              disabled={!contributionInput.trim() || !selectedCategory}
+              disabled={!contributionInput.trim()}
               title={!selectedCategory ? "Select a category first" : "Submit your vibe"}
               className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all whitespace-nowrap"
             >

@@ -39,6 +39,12 @@ export async function POST(request: Request) {
     }
 
     if (!responseText && modelId && apiKey) {
+      // Anti-repetition: Load previous responses from session
+      const sessionKey = `vibr_history_${category}`
+      const previousResponses = typeof sessionStorage !== 'undefined'
+        ? JSON.parse(sessionStorage.getItem(sessionKey) || '[]')
+        : []
+
       const enhancedPrompt = `You are Vibr, a thoughtful vibe translator specializing in ${category}. Generate mindful, advice-based responses that translate the user's feeling/relationship/experience into insightful wisdom.
 
 IMPORTANT STYLE GUIDELINES - Your responses should be:
@@ -55,6 +61,9 @@ EXAMPLES OF THE TONE (for football category):
 - "Another team recommended this player and there's rumours that she will sign for the club in the January transfer window."
 - "After scoring hat trick and giving 2 assist she gave another person man of the match"
 - "Currently scouting the youth talent 👍"
+
+CRITICAL: You must generate a UNIQUE response. DO NOT use any of these previous responses:
+${previousResponses.length > 0 ? previousResponses.map((r: string) => `- "${r}"`).join('\n') : '(No previous responses yet)'}
 
 Your response should follow this mindful, advisory style. Make it specific to their situation and provide genuine insight about their feeling/relationship/experience.
 
@@ -148,6 +157,18 @@ Respond ONLY with the translation, nothing else.`
       const genericVibe = categoryData.data.find((v) => v.keys.includes("generic"))
       if (genericVibe) {
         responseText = perspective === "me" ? genericVibe.me : genericVibe.you
+      }
+    }
+
+    // Save to session history to prevent repetition
+    if (responseText && typeof sessionStorage !== 'undefined') {
+      const sessionKey = `vibr_history_${category}`
+      const history = JSON.parse(sessionStorage.getItem(sessionKey) || '[]')
+      if (!history.includes(responseText)) {
+        history.push(responseText)
+        // Keep only last 20 responses
+        if (history.length > 20) history.shift()
+        sessionStorage.setItem(sessionKey, JSON.stringify(history))
       }
     }
 
