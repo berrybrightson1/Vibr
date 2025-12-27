@@ -195,18 +195,18 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 w-full flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 py-6 md:py-10 relative z-10">
+      <main className="flex-1 w-full flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 py-4 md:py-6 relative z-10">
         <div className="w-full max-w-5xl">
-          <div className="text-center mb-8 md:mb-10">
-            <div className="flex justify-center mb-6">
+          <div className="text-center mb-6 md:mb-8">
+            <div className="flex justify-center mb-3">
               <AIListeningOrb />
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-balance mb-2">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-balance mb-1">
               What's your
               <br />
               vibe today?
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Choose a category,
               <br />
               express yourself.
