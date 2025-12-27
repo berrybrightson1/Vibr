@@ -11,7 +11,7 @@ export interface Model {
   logo: string
 }
 
-const AVAILABLE_MODELS: Model[] = [
+export const AVAILABLE_MODELS: Model[] = [
   { id: "openai", name: "GPT-4o", provider: "OpenAI", logo: "🔷" },
   { id: "anthropic", name: "Claude 3.5 Sonnet", provider: "Anthropic", logo: "🤖" },
   { id: "google", name: "Gemini 2.0", provider: "Google", logo: "🔍" },
